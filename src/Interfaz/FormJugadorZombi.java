@@ -5,6 +5,8 @@
 package Interfaz;
 
 import Entidades.Jugador;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,15 +17,24 @@ public class FormJugadorZombi extends javax.swing.JDialog {
     /**
      * Creates new form FormJugadorZombi
      */
-    
-    Jugador jugador=new Jugador();
-    
+    Jugador jugador = new Jugador();
+    JFrame ventanaInicio;
+
     public FormJugadorZombi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Zombi");
         setLocation(353, 190);
-        jugador=Inicio.listaJugador.buscarJugador("Zombi");
+        jugador = Inicio.listaJugador.buscarJugador("Zombi");
+        ventanaInicio = (JFrame) parent;
+
+        if (jugador.getNombre() != null) {
+            txtNombre.setText(jugador.getNombre());
+            txtCantidad.setValue(jugador.getCantidad());
+            txtNombre.setEditable(false);
+            txtCantidad.setEnabled(false);
+            btnGuardarJugador.setEnabled(false);
+        }
     }
 
     /**
@@ -39,9 +50,10 @@ public class FormJugadorZombi extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGuardarJugador = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JSpinner();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -56,17 +68,25 @@ public class FormJugadorZombi extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel3.setText("Cantidad");
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarJugador.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        btnGuardarJugador.setText("Guardar");
+        btnGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarJugadorActionPerformed(evt);
             }
         });
 
         txtNombre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
         txtCantidad.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+
+        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButton2.setText("Agregar Campos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,18 +100,20 @@ public class FormJugadorZombi extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel1)))
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(56, 56, 56))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnGuardarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +128,11 @@ public class FormJugadorZombi extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardarJugador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,15 +149,20 @@ public class FormJugadorZombi extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!txtNombre.getText().equalsIgnoreCase("")&&txtCantidad.getValue()!=0){
+    private void btnGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarJugadorActionPerformed
+        if (!txtNombre.getText().equalsIgnoreCase("") && (int) txtCantidad.getValue() > 0) {
             jugador.setNombre(txtNombre.getText());
             jugador.setCantidad((int) txtCantidad.getValue());
             Inicio.jugadorZombi.setVisible(false);
-        }else{
-            
+        } else {
+            JOptionPane.showMessageDialog(this, "Campo vacio", "", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarJugadorActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FormCampos campos = new FormCampos(ventanaInicio, true, "Zombi");
+        campos.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,7 +206,8 @@ public class FormJugadorZombi extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGuardarJugador;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -9,5 +9,4 @@ package EstructurasDeDatos;
  * @author Jose
  */
 public class Matriz {
-    
 }

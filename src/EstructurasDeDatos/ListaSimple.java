@@ -5,6 +5,8 @@
 package EstructurasDeDatos;
 
 import Entidades.Jugador;
+import Entidades.Planta;
+import Entidades.Zombi;
 
 /**
  *
@@ -82,14 +84,14 @@ public class ListaSimple {
                 primerNodo = primerNodo.siguienteNodo;
             }
             return elementoEliminado; // devuelve los datos del nodo eliminado
-        }else{
+        } else {
             return null;
         }// fin del método eliminarDelFrente
-        
+
     }
-    
-    public Jugador buscarJugador(String tipo){
-       NodoSimple nodo = primerNodo;
+
+    public Jugador buscarJugador(String tipo) {
+        NodoSimple nodo = primerNodo;
         Jugador jugadorBuscado = null;
         Jugador jugador;
         while (nodo != null) {
@@ -102,7 +104,141 @@ public class ListaSimple {
         }
 
         return jugadorBuscado;
-       
-       
+
+
+    }
+
+    public Planta buscarPlanta(int indice) {
+        NodoSimple nodo = primerNodo;
+        Planta PlantaBuscada = null;
+        Planta planta;
+        int i = 0;
+        while (nodo != null) {
+
+            planta = (Planta) nodo.datos;
+            if (indice == i) {
+                PlantaBuscada = planta;
+                break;
+            }
+            nodo = nodo.siguienteNodo;
+            i++;
+        }
+
+        return PlantaBuscada;
+
+
+    }
+
+    public Zombi buscarZombi(int indice) {
+        NodoSimple nodo = primerNodo;
+        Zombi zombiBuscado = null;
+        Zombi zombi;
+        int i = 0;
+        while (nodo != null) {
+
+            zombi = (Zombi) nodo.datos;
+            if (indice == i) {
+                zombiBuscado = zombi;
+                break;
+            }
+            nodo = nodo.siguienteNodo;
+            i++;
+        }
+
+        return zombiBuscado;
+
+
+    }
+
+    public void eliminarPlanta(int indice) {
+        NodoSimple actual, anterior;
+        actual = primerNodo;
+        anterior = null;
+        Planta planta;
+        int i = 0;
+        while (actual != null) {
+
+            planta = (Planta) actual.datos;
+            if (indice == i) {
+
+                if (anterior != null) {
+                    NodoSimple aux = actual;
+                    actual = anterior;
+                    actual.siguienteNodo = aux.siguienteNodo;
+
+                } else {
+                    NodoSimple aux = actual.siguienteNodo;
+                    primerNodo = null;
+                    primerNodo = aux;
+                }
+                break;
+            }
+            anterior = actual;
+            actual = actual.siguienteNodo;
+            i++;
+
+        }
+
+    }
+
+    public void eliminarZombi(int indice) {
+        NodoSimple actual, anterior;
+        actual = primerNodo;
+        anterior = null;
+        Zombi zombi;
+        int i = 0;
+        while (actual != null) {
+
+            zombi = (Zombi) actual.datos;
+            if (indice == i) {
+
+                if (anterior != null) {
+                    NodoSimple aux = actual;
+                    actual = anterior;
+                    actual.siguienteNodo = aux.siguienteNodo;
+
+                } else {
+                    NodoSimple aux = actual.siguienteNodo;
+                    primerNodo = null;
+                    primerNodo = aux;
+                }
+                break;
+            }
+            anterior = actual;
+            actual = actual.siguienteNodo;
+            i++;
+
+        }
+    }
+
+    public void eliminar(int indice) {
+        NodoSimple actual, anterior;
+        boolean encontrado;
+//inicializa los apuntadores
+        actual = primerNodo;
+        anterior = null;
+        encontrado = false;
+        int i = 0;
+// búsqueda del nodo y del anterior
+        while ((actual != null) && (!(indice != i))) {
+            encontrado = (i == indice);
+            //con objetos: actual.dato.equals(indice)
+            if (!encontrado) {
+                anterior = actual;
+                actual = actual.siguienteNodo;
+            }
+            i++;
+        }
+// Enlace del nodo anterior con el siguiente
+        if (actual != null) {
+            // Distingue entre que el nodo sea el cabecera,
+            // o del resto de la lista
+            if (actual == primerNodo) {
+                primerNodo = actual.siguienteNodo;
+            } else {
+                anterior.siguienteNodo = actual.siguienteNodo;
+            }
+            actual = null; // no es necesario al ser una variable local
+        }
     }
 }

@@ -11,6 +11,7 @@ import EstructurasDeDatos.ListaSimple;
  * @author Jose
  */
 public class Jugador {
+
     private String tipo;
     private String nombre;
     private int cantidad;

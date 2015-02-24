@@ -41,7 +41,7 @@ public class ListaDobleEnlazada {
         Nodo actual;
         boolean encontrado = false;
         actual = cabeza;
-        while((actual != null) && (!encontrado)) {
+        while ((actual != null) && (!encontrado)) {
             encontrado = (actual.dato == entrada);
             if (!encontrado) {
                 actual = actual.adelante;

@@ -9,18 +9,19 @@ package EstructurasDeDatos;
  * @author Jose
  */
 public class Cola {
+
     public NodoSimple primerNodo;
     public NodoSimple ultimoNodo;
-    
-    public void agregarACola(Object datos){
-    if (listaVacia()) {
+
+    public void agregarACola(Object datos) {
+        if (listaVacia()) {
             primerNodo = ultimoNodo = new NodoSimple(datos);
         } else {
             ultimoNodo = ultimoNodo.siguienteNodo = new NodoSimple(datos);
         }
     }
-    
-    public Object eliminar(){
+
+    public Object eliminar() {
         if (!listaVacia()) { // lanza excepción si la Lista está vacía
 
 
@@ -32,13 +33,12 @@ public class Cola {
                 primerNodo = primerNodo.siguienteNodo;
             }
             return elementoEliminado; // devuelve los datos del nodo eliminado
-        }else{
+        } else {
             return null;
         }// fin del método eliminarDelFrente
     }
-    
+
     boolean listaVacia() {
         return primerNodo == null;
     }
-    
 }

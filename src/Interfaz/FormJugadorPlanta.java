@@ -5,23 +5,36 @@
 package Interfaz;
 
 import Entidades.*;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jose
  */
 public class FormJugadorPlanta extends javax.swing.JDialog {
-    
-    Jugador jugador=new Jugador();
+
+    Jugador jugador = new Jugador();
+    JFrame ventanaInicio;
 
     public FormJugadorPlanta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Plantas");
         setLocation(353, 190);
-
-        jugador=Inicio.listaJugador.buscarJugador("Planta");
+        jugador = Inicio.listaJugador.buscarJugador("Planta");
+        if (jugador.getNombre() != null) {
+            txtNombre.setText(jugador.getNombre());
+            txtCantidad.setValue(jugador.getCantidad());
+            txtNombre.setEditable(false);
+            txtCantidad.setEnabled(false);
+            btnGuardarJugador.setEnabled(false);
+            btnAgregarCampos.setEnabled(true);
+        } else {
+            btnAgregarCampos.setEnabled(false);
+        }
+        ventanaInicio = (JFrame) parent;
     }
 
     /**
@@ -39,8 +52,8 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGuardarJugador = new javax.swing.JButton();
+        btnAgregarCampos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,16 +72,21 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
 
         txtCantidad.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarJugador.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        btnGuardarJugador.setText("Guardar");
+        btnGuardarJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarJugadorActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton2.setText("Agregar campos");
+        btnAgregarCampos.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnAgregarCampos.setText("Agregar campos");
+        btnAgregarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCamposActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,8 +114,8 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAgregarCampos)
+                    .addComponent(btnGuardarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,9 +132,9 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(btnAgregarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnGuardarJugador)
                 .addContainerGap())
         );
 
@@ -128,23 +146,37 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!txtNombre.getText().equalsIgnoreCase("")&&txtCantidad.getValue()!=0){
+    static int x = 0;
+    private void btnGuardarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarJugadorActionPerformed
+        if (!txtNombre.getText().equalsIgnoreCase("") && (int) txtCantidad.getValue() > 0) {
             jugador.setNombre(txtNombre.getText());
             jugador.setCantidad((int) txtCantidad.getValue());
-            Inicio.jugadorPlanta.setVisible(false);
-            
-        }else{
-            
+            //Inicio.jugadorPlanta.setVisible(false);
+            btnAgregarCampos.setEnabled(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Campo vacio", "", JOptionPane.ERROR_MESSAGE);
         }
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+//        JButton b=new JButton("boton "+ x);
+//        b.setBounds(10, 50*x, 100, 50);
+//        
+//        jPanel2.add(b);
+// 
+//        x++;
+
+
+    }//GEN-LAST:event_btnGuardarJugadorActionPerformed
+
+    private void btnAgregarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCamposActionPerformed
+        FormCampos campos = new FormCampos(ventanaInicio, true, "Planta");
+        campos.setVisible(true);
+    }//GEN-LAST:event_btnAgregarCamposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,8 +220,8 @@ public class FormJugadorPlanta extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAgregarCampos;
+    private javax.swing.JButton btnGuardarJugador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

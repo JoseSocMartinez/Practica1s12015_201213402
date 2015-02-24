@@ -2,7 +2,7 @@ package EstructurasDeDatos;
 
 import java.io.*;
 
-public class NodoSimple{
+public class NodoSimple {
 
     public NodoSimple siguienteNodo;
     public Object datos;

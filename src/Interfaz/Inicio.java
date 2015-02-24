@@ -6,6 +6,7 @@ package Interfaz;
 
 import Entidades.Jugador;
 import EstructurasDeDatos.*;
+import javax.swing.JButton;
 
 /**
  *
@@ -13,46 +14,45 @@ import EstructurasDeDatos.*;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    public static ListaSimple listaJugador=new ListaSimple();
-    public static Cola colaPlantas=new Cola();
-    public static Pila pilaZombis=new Pila();
-    public static ListaSimple listaPlantas=new ListaSimple();
-    public static ListaSimple listaZombis=new ListaSimple();
-    
+    public static ListaSimple listaJugador = new ListaSimple();
+    public static Cola colaPlantas = new Cola();
+    public static Pila pilaZombis = new Pila();
+    public static ListaSimple catalogoPlanta = new ListaSimple();
+    public static ListaSimple catalogoZombi = new ListaSimple();
     public static FormJugadorPlanta jugadorPlanta;
     public static FormJugadorZombi jugadorZombi;
-    
-    
+
     /**
      * Creates new form Inicio
      */
     public Inicio() {
-        
-      //  Cola cola=new Cola();
-      //  for(int i=0;i<20;i++){
-       //     cola.agregarACola(i);
-        
-      //  }
-        
-       // Pila pila=new Pila();
-       // for(int i=0;i<20;i++){
-       //    pila.apilar(i);
-        
-       // }
+
+        //  Cola cola=new Cola();
+        //  for(int i=0;i<20;i++){
+        //     cola.agregarACola(i);
+
+        //  }
+
+        // Pila pila=new Pila();
+        // for(int i=0;i<20;i++){
+        //    pila.apilar(i);
+
+        // }
         //int nu=(int)pila.eliminar();
-       // System.out.println(""+nu);
+        // System.out.println(""+nu);
 //        for(int i=0;i<20;i++){
 //            NodoSimple nodo=cola.primerNodo;
 //            System.out.println(""+nodo.datos);
 //            nodo=nodo.siguienteNodo;
 //        }
         //int nodo=(int)cola.eliminar();
-       // System.out.println(""+nodo);
+        // System.out.println(""+nodo);
         initComponents();
         setSize(930, 600);
-        
-        
-        
+        setTitle("Plantas vs Zombis");
+
+
+
     }
 
     /**
@@ -64,41 +64,82 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnPlantas = new javax.swing.JButton();
+        btnZombis = new javax.swing.JButton();
+        btnEmpezar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnCrearPlanta = new javax.swing.JButton();
+        btnCrearZombi = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Plantas");
+        btnPlantas.setText("Plantas");
+        btnPlantas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlantasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPlantas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 120, 60));
+
+        btnZombis.setText("Zombis");
+        btnZombis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZombisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnZombis, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 60));
+
+        btnEmpezar.setText("Empezar Juego");
+        btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpezarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 180, 70));
+
+        btnBorrar.setText("Borrar Datos");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 190, 70));
+
+        btnCrearPlanta.setText("Crear Planta");
+        btnCrearPlanta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPlantaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
+
+        btnCrearZombi.setText("Crear Zombi");
+        btnCrearZombi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearZombiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCrearZombi, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, -1, -1));
+
+        jButton1.setText("Ver catalogo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 120, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
 
-        jButton2.setText("Zombis");
+        jButton2.setText("Ver catalogo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 60));
-
-        jButton3.setText("Empezar Juego");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 490, 180, 70));
-
-        jButton4.setText("Borrar Datos");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 190, 70));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoInicio.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -106,40 +147,94 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if(listaJugador.buscarJugador("Planta")==null){
-        Jugador jugador=new Jugador();
-        jugador.setTipo("Planta");
-        listaJugador.agregarAlFinal(jugador);
-        }else{
-            
+    private void btnPlantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantasActionPerformed
+
+        if (listaJugador.buscarJugador("Planta") == null) {
+            Jugador jugador = new Jugador();
+            jugador.setTipo("Planta");
+            listaJugador.agregarAlFinal(jugador);
+        } else {
         }
-        jugadorPlanta=new FormJugadorPlanta(this, true);
+        jugadorPlanta = new FormJugadorPlanta(this, true);
         jugadorPlanta.setVisible(true);
-        
-        
-        
+
+
+
+    }//GEN-LAST:event_btnPlantasActionPerformed
+
+    private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmpezarActionPerformed
+
+    private void btnZombisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZombisActionPerformed
+
+        if (listaJugador.buscarJugador("Zombi") == null) {
+            Jugador jugador = new Jugador();
+            jugador.setTipo("Zombi");
+            listaJugador.agregarAlFinal(jugador);
+        } else {
+        }
+
+        jugadorZombi = new FormJugadorZombi(this, true);
+        jugadorZombi.setVisible(true);
+
+
+    }//GEN-LAST:event_btnZombisActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        listaJugador = new ListaSimple();
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnCrearPlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPlantaActionPerformed
+        FormCrear crearPlanta = new FormCrear(this, true, "Planta");
+        crearPlanta.setVisible(true);
+
+    }//GEN-LAST:event_btnCrearPlantaActionPerformed
+
+    private void btnCrearZombiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearZombiActionPerformed
+        FormCrear crear = new FormCrear(this, true, "Zombi");
+        crear.setVisible(true);
+
+    }//GEN-LAST:event_btnCrearZombiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormCatalogo catalogo = new FormCatalogo(this, true, "Planta");
+        catalogo.setVisible(true);
+        catalogo.setBounds(0, 0, 680, 500);
+        catalogo.PanelCatalogo.setLayout(null);
+//        FormComponeneteCatalogo componente=new FormComponeneteCatalogo();
+//            componente.setVisible(true);
+//            componente.setBounds(0,111, 462, 111);
+//            catalogo.panelCatalogo.add(componente);
+//            
+//            FormComponeneteCatalogo componente2=new FormComponeneteCatalogo();
+//            componente2.setVisible(true);
+//            componente2.setBounds(0,222, 462, 111);
+//            catalogo.panelCatalogo.add(componente2);
+
+//        JButton b=new JButton("sdfasdf");
+//        b.setBounds(0,0, 100, 100);
+//        catalogo.panelCatalogo.add(b);
+//        
+//                JButton b2=new JButton("sdfasdf");
+//        b2.setBounds(0,100, 100, 100);
+//        catalogo.panelCatalogo.add(b2);
+//        
+//        for(int i=0;i<Inicio.catalogoPlanta.tamanioDeLaLista();i++){
+//            
+//            FormComponeneteCatalogo componente=new FormComponeneteCatalogo();
+//            componente.setVisible(true);
+//            componente.setBounds(0, i*111, 462, 111);
+//            catalogo.panelCatalogo.add(componente);
+//            
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if(listaJugador.buscarJugador("Zombi")==null){
-        Jugador jugador=new Jugador();
-        jugador.setTipo("Zombi");
-        listaJugador.agregarAlFinal(jugador);
-        }else{
-            
-        }
-        
-        jugadorZombi=new FormJugadorZombi(this,true);
-        jugadorZombi.setVisible(true);
-        
-        
+        FormCatalogo catalogo = new FormCatalogo(this, true, "Zombi");
+        catalogo.setVisible(true);
+        catalogo.setBounds(0, 0, 680, 500);
+        catalogo.PanelCatalogo.setLayout(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -177,10 +272,14 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnCrearPlanta;
+    private javax.swing.JButton btnCrearZombi;
+    private javax.swing.JButton btnEmpezar;
+    private javax.swing.JButton btnPlantas;
+    private javax.swing.JButton btnZombis;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

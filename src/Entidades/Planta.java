@@ -9,10 +9,12 @@ package Entidades;
  * @author Jose
  */
 public class Planta {
+
     private int ataque;
     private int vida;
     private String tipoAtaque;
     private String nombre;
+    private String foto;
 
     /**
      * @return the ataque
@@ -69,5 +71,18 @@ public class Planta {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    /**
+     * @return the foto
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 }

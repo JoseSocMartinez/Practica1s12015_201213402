@@ -9,14 +9,13 @@ package EstructurasDeDatos;
  * @author Jose
  */
 public class Nodo {
-    
+
     Object dato;
     Nodo adelante;
     Nodo atras;
-    
-    public Nodo(Object entrada){
-        dato=entrada;
-        adelante=atras=null;
-    }
 
+    public Nodo(Object entrada) {
+        dato = entrada;
+        adelante = atras = null;
+    }
 }
