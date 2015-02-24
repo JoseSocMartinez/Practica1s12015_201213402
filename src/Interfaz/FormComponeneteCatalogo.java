@@ -113,7 +113,7 @@ public class FormComponeneteCatalogo extends javax.swing.JPanel {
             Inicio.catalogoZombi.eliminarZombi(getIndice());
             formCatalogo.setVisible(false);
         }
-        JOptionPane.showMessageDialog(this, "Eliminado", "", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, "Eliminado", "", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_btnEliminarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

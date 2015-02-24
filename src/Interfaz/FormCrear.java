@@ -216,7 +216,7 @@ public class FormCrear extends javax.swing.JDialog {
                     zombi.setFoto(direccion);
                     Inicio.catalogoZombi.agregarAlFinal(zombi);
                 }
-                JOptionPane.showMessageDialog(this, "Guardado", "", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(this, "Guardado", "", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "La vida y el ateque deben ser mayores a cero", "", JOptionPane.ERROR_MESSAGE);
             }

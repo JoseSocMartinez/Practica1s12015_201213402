@@ -241,7 +241,7 @@ public class FormModificar extends javax.swing.JDialog {
                     zombi.setTipoAtaque((String) txtTipo.getSelectedItem());
                     //Inicio.catalogoZombi.agregarAlFinal(zombi);
                 }
-                JOptionPane.showMessageDialog(this, "Modificado", "", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(this, "Modificado", "", JOptionPane.INFORMATION_MESSAGE);
                 formComponente.setVisible(false);
                 setVisible(false);
             } else {
