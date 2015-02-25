@@ -10,12 +10,12 @@ package EstructurasDeDatos;
  */
 public class ListaDobleEnlazada {
 
-    Nodo cabeza;
+    Nodo1 cabeza;
 
     public ListaDobleEnlazada insertarAdelante(Object entrada) {
 
-        Nodo nuevo;
-        nuevo = new Nodo(entrada);
+        Nodo1 nuevo;
+        nuevo = new Nodo1(entrada);
         nuevo.adelante = cabeza;
         if (cabeza != null) {
             cabeza.atras = nuevo;
@@ -25,9 +25,9 @@ public class ListaDobleEnlazada {
         return this;
     }
 
-    public ListaDobleEnlazada insertaDespues(Nodo anterior, Object entrada) {
-        Nodo nuevo;
-        nuevo = new Nodo(entrada);
+    public ListaDobleEnlazada insertaDespues(Nodo1 anterior, Object entrada) {
+        Nodo1 nuevo;
+        nuevo = new Nodo1(entrada);
         nuevo.adelante = anterior.adelante;
         if (anterior.adelante != null) {
             anterior.adelante.atras = nuevo;
@@ -38,7 +38,7 @@ public class ListaDobleEnlazada {
     }
 
     public void eliminar(Object entrada) {
-        Nodo actual;
+        Nodo1 actual;
         boolean encontrado = false;
         actual = cabeza;
         while ((actual != null) && (!encontrado)) {

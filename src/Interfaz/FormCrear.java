@@ -206,6 +206,7 @@ public class FormCrear extends javax.swing.JDialog {
                     planta.setAtaque((int) txtAtaque.getValue());
                     planta.setTipoAtaque((String) txtTipo.getSelectedItem());
                     planta.setFoto(direccion);
+                    planta.setIcon(new ImageIcon(direccion));
                     Inicio.catalogoPlanta.agregarAlFinal(planta);
                 } else if (tipo.equalsIgnoreCase("Zombi")) {
                     Zombi zombi = new Zombi();

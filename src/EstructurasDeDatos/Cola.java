@@ -38,6 +38,16 @@ public class Cola {
         }// fin del método eliminarDelFrente
     }
 
+    public int tamanioDeLaCola() {
+        NodoSimple nodo = primerNodo;
+        int tamanioCola = 0;
+        while (nodo != null) {
+            tamanioCola++;
+            nodo = nodo.siguienteNodo;
+        }
+        return tamanioCola;
+    }
+
     boolean listaVacia() {
         return primerNodo == null;
     }

@@ -4,11 +4,17 @@
  */
 package Entidades;
 
+import EstructurasDeDatos.NodoSimple;
+import Interfaz.Inicio;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
 /**
  *
  * @author Jose
  */
-public class Planta {
+public class Planta extends JButton implements ActionListener {
 
     private int ataque;
     private int vida;
@@ -19,6 +25,21 @@ public class Planta {
     /**
      * @return the ataque
      */
+    public Planta() {
+        // setIcon(new ImageIcon(getFoto()));
+        // setSize(100, 100);
+        evento();
+    }
+
+    public Planta(Boolean disparar) {
+
+        setIcon(new ImageIcon(getFoto()));
+        setSize(100, 100);
+        if (disparar) {
+            //llama al metodo disparar
+        }
+    }
+
     public int getAtaque() {
         return ataque;
     }
@@ -84,5 +105,37 @@ public class Planta {
      */
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    void evento() {
+        addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setVisible(false);
+                Inicio.colaPlantas.eliminar();
+
+                NodoSimple nodoCola = Inicio.colaPlantas.primerNodo;
+                for (int i = 0; i < Inicio.colaPlantas.tamanioDeLaCola(); i++) {
+
+//            JButton b=new JButton();
+//            b.setBounds(0, 0, 100,100);
+//            panelPlanta.add(b);
+
+                    Planta plantaCola = (Planta) nodoCola.datos;
+                    plantaCola.setBounds(0, i * 100, 100, 100);
+
+
+                    nodoCola = nodoCola.siguienteNodo;
+                }
+
+            }
+        });
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setVisible(false);
+
     }
 }

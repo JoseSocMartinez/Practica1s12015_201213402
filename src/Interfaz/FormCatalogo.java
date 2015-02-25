@@ -27,6 +27,7 @@ public class FormCatalogo extends javax.swing.JDialog {
 
     public FormCatalogo(java.awt.Frame parent, boolean modal, String tipo) {
         this(parent, modal);
+
         this.tipo = tipo;
 
         ventanaInicio = (JFrame) parent;
@@ -114,6 +115,7 @@ public class FormCatalogo extends javax.swing.JDialog {
     public FormCatalogo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //jScrollPane1.setViewportView(PanelCatalogo);
 //        ventanaInicio=(JFrame)parent;
 //        //formCata=this;
 //        //fondoPanelCatalogo.setLayout(null);
@@ -172,7 +174,6 @@ public class FormCatalogo extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(520, 562));
         getContentPane().setLayout(null);
 
         PanelCatalogo.setLayout(null);

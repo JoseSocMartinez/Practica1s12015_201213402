@@ -5,8 +5,11 @@
 package Interfaz;
 
 import Entidades.Jugador;
+import Entidades.Planta;
 import EstructurasDeDatos.*;
+import graphviz.Pintar;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +75,9 @@ public class Inicio extends javax.swing.JFrame {
         btnCrearZombi = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -141,6 +147,30 @@ public class Inicio extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 530, -1, -1));
 
+        jButton3.setText("Reporte Catalogo Planta");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        jButton4.setText("Reporte Catalogo Zombi");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+
+        jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoInicio.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -163,7 +193,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlantasActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
-        // TODO add your handling code here:
+        FormTamanioMatriz matriz = new FormTamanioMatriz(this, true);
+        matriz.setVisible(true);
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
     private void btnZombisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZombisActionPerformed
@@ -237,6 +268,96 @@ public class Inicio extends javax.swing.JFrame {
         catalogo.PanelCatalogo.setLayout(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //String titulo;
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        if (catalogoPlanta.primerNodo != null) {
+            Pintar pintar = new Pintar();
+            pintar.reporteCatalogoPlanta("Catalogo de Plantas");
+            JOptionPane.showMessageDialog(this, "Reporte generado exitosamente!", "", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "El catalogo de plantas esta vacio!", "", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        //generarReporte("Catalogo de Plantas");
+
+        /* String titulo = "";
+         String cadena = "";
+
+         String numero = "", nombre = "", ataque = "", vida = "", tipo = "";
+         int indice = 1;
+
+         ListaSimple lista = Inicio.catalogoPlanta;
+         NodoSimple nodo = lista.primerNodo;
+
+         for (int i = 0; i < lista.tamanioDeLaLista(); i++) {
+
+
+
+         Planta planta = (Planta) nodo.datos;
+
+         numero = numero + "|" + Integer.toString(indice);
+         nombre = nombre + "|" + planta.getNombre();
+         ataque = ataque + "|" + planta.getAtaque();
+         vida = vida + "|" + planta.getVida();
+         tipo = tipo + "|" + planta.getTipoAtaque();
+
+         indice++;
+         // }
+
+         nodo = nodo.siguienteNodo;
+
+         }
+
+
+
+
+
+         //codigo para grahpiz
+
+         cadena = "digraph tabla {"
+         + "node [shape=record];"
+         + "Titulo[label=\"Catalogo de Plantas\"];"
+         + "node [shape=record];"
+         + "Catalogo[label=\""
+         + "{No." + numero
+         + "}|{Nombre" + nombre
+         + "}|{P. Ataque" + ataque
+         + "}|{P. Defensa" + vida
+         + "}|{Tipo Ataque" + tipo
+         + "}\"];Titulo -> Catalogo;}";
+
+
+         titulo = "Catalogo de Plantas";
+         Pintar pintar = new Pintar(titulo, cadena);*/
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (catalogoPlanta.primerNodo != null) {
+            Pintar pintar = new Pintar();
+            pintar.reporteCatalogoZombi("Catalogo de Zombis");
+            JOptionPane.showMessageDialog(this, "Reporte generado exitosamente!", "", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "El catalogo de zombis esta vacio!", "", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+//        Pintar pintar = new Pintar();
+//        pintar.reporteJugadores("Jugadores");
+        Tablero tablero = new Tablero();
+        tablero.setVisible(true);
+        tablero.setResizable(false);
+//        JButton b=new JButton();
+//        b.setBounds(0,0, 100, 100);
+//        tablero.panelPlanta.add(b);
+//        
+//        JButton b2=new JButton();
+//        b2.setBounds(0,100, 100, 100);
+//        tablero.panelPlanta.add(b2);
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +401,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnZombis;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
