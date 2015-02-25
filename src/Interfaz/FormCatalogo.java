@@ -8,9 +8,11 @@ import Entidades.Planta;
 import Entidades.Zombi;
 import EstructurasDeDatos.NodoSimple;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -35,10 +37,13 @@ public class FormCatalogo extends javax.swing.JDialog {
         //fondoPanelCatalogo.setLayout(null);
         fondoPanelCatalogo.setSize(660, 500);
 
-        PanelCatalogo.setLayout(null);
-        PanelCatalogo.setSize(620, 10000);
+        //PanelCatalogo.setLayout(null);
+        //PanelCatalogo.setSize(620, 10000);
         //setResizable(false);
-        setSize(675, 500);
+        setSize(645, 500);
+        setResizable(false);
+        JPanel panelCata = new JPanel();
+
 
         if (tipo.equalsIgnoreCase("Planta")) {
 
@@ -52,7 +57,7 @@ public class FormCatalogo extends javax.swing.JDialog {
                 componente.setBounds(0, i * 105, 620, 100);
                 componente.setIndice(i);
                 componente.setTipo("Planta");
-                PanelCatalogo.add(componente);
+                panelCata.add(componente);
 
 
 
@@ -74,6 +79,12 @@ public class FormCatalogo extends javax.swing.JDialog {
 
 
             }
+
+            panelCata.setLayout(null);
+            panelCata.setVisible(true);
+            panelCata.setPreferredSize(new Dimension(100, Inicio.catalogoPlanta.tamanioDeLaLista() * 100));
+            scrolCatalogo.setViewportView(panelCata);
+
         } else if (tipo.equalsIgnoreCase("Zombi")) {
             setTitle("Catalogo " + tipo);
             NodoSimple nodo = Inicio.catalogoZombi.primerNodo;
@@ -84,7 +95,7 @@ public class FormCatalogo extends javax.swing.JDialog {
                 componente.setBounds(0, i * 105, 620, 100);
                 componente.setIndice(i);
                 componente.setTipo("Zombi");
-                PanelCatalogo.add(componente);
+                panelCata.add(componente);
 
 
 
@@ -106,6 +117,11 @@ public class FormCatalogo extends javax.swing.JDialog {
 
 
             }
+
+            panelCata.setLayout(null);
+            panelCata.setVisible(true);
+            panelCata.setPreferredSize(new Dimension(100, Inicio.catalogoZombi.tamanioDeLaLista() * 100));
+            scrolCatalogo.setViewportView(panelCata);
         }
 
 
@@ -163,9 +179,7 @@ public class FormCatalogo extends javax.swing.JDialog {
     private void initComponents() {
 
         fondoPanelCatalogo = new javax.swing.JPanel();
-        PanelCatalogo = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        scrolCatalogo = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -176,44 +190,21 @@ public class FormCatalogo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        PanelCatalogo.setLayout(null);
-
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout fondoPanelCatalogoLayout = new javax.swing.GroupLayout(fondoPanelCatalogo);
         fondoPanelCatalogo.setLayout(fondoPanelCatalogoLayout);
         fondoPanelCatalogoLayout.setHorizontalGroup(
             fondoPanelCatalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fondoPanelCatalogoLayout.createSequentialGroup()
-                .addComponent(PanelCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fondoPanelCatalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)))
+            .addComponent(scrolCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         fondoPanelCatalogoLayout.setVerticalGroup(
             fondoPanelCatalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelCatalogo, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelCatalogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(242, 242, 242))
+            .addGroup(fondoPanelCatalogoLayout.createSequentialGroup()
+                .addComponent(scrolCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getContentPane().add(fondoPanelCatalogo);
-        fondoPanelCatalogo.setBounds(0, 20, 660, 500);
+        fondoPanelCatalogo.setBounds(0, 20, 640, 463);
 
         jLabel1.setText("Imagen");
 
@@ -260,19 +251,6 @@ public class FormCatalogo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        if ((PanelCatalogo.getLocation().y < 0)) {
-            PanelCatalogo.setLocation(0, PanelCatalogo.getLocation().y + 120);
-            PanelCatalogo.setSize(620, 10000);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PanelCatalogo.setLocation(0, PanelCatalogo.getLocation().y - 120);
-        PanelCatalogo.setSize(620, 10000);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -315,15 +293,13 @@ public class FormCatalogo extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel PanelCatalogo;
     private javax.swing.JPanel fondoPanelCatalogo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane scrolCatalogo;
     // End of variables declaration//GEN-END:variables
 }

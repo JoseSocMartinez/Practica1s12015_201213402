@@ -5,7 +5,9 @@
 package Interfaz;
 
 import Entidades.Planta;
+import Entidades.Zombi;
 import EstructurasDeDatos.NodoSimple;
+import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,13 +24,18 @@ public class Tablero extends javax.swing.JFrame {
         initComponents();
         //panelPlanta.setLayout(null);
         //panelPlanta.setSize(100, 500);
-        NodoSimple nodo = Inicio.catalogoPlanta.primerNodo;
+        JPanel pPlanta = new JPanel();
+        JPanel pZombi = new JPanel();
+
+        NodoSimple nodoCatalogoPlanta = Inicio.catalogoPlanta.primerNodo;
         for (int i = 0; i < Inicio.catalogoPlanta.tamanioDeLaLista(); i++) {
 
-            Planta planta = (Planta) nodo.datos;
+            Planta planta = (Planta) nodoCatalogoPlanta.datos;
             Inicio.colaPlantas.agregarACola(planta);
-            nodo = nodo.siguienteNodo;
+            nodoCatalogoPlanta = nodoCatalogoPlanta.siguienteNodo;
         }
+
+
 
         NodoSimple nodoCola = Inicio.colaPlantas.primerNodo;
         for (int i = 0; i < Inicio.colaPlantas.tamanioDeLaCola(); i++) {
@@ -39,9 +46,36 @@ public class Tablero extends javax.swing.JFrame {
 
             Planta plantaCola = (Planta) nodoCola.datos;
             plantaCola.setBounds(0, i * 100, 100, 100);
-            panelPlanta.add(plantaCola);
+            pPlanta.add(plantaCola);
 
             nodoCola = nodoCola.siguienteNodo;
+        }
+
+        pPlanta.setLayout(null);
+        pPlanta.setVisible(true);
+        pPlanta.setPreferredSize(new Dimension(100, Inicio.colaPlantas.tamanioDeLaCola() * 100));
+        scrolPlanta.setViewportView(pPlanta);
+
+        NodoSimple nodo = Inicio.catalogoZombi.primerNodo;
+        for (int i = 0; i < Inicio.catalogoZombi.tamanioDeLaLista(); i++) {
+
+            Zombi zombi = (Zombi) nodo.datos;
+            Inicio.pilaZombis.apilar(zombi);
+            nodo = nodo.siguienteNodo;
+        }
+
+        NodoSimple nodoPila = Inicio.pilaZombis.primerNodo;
+        for (int i = 0; i < Inicio.pilaZombis.tamanioDeLaPila(); i++) {
+
+//            JButton b=new JButton();
+//            b.setBounds(0, 0, 100,100);
+//            panelPlanta.add(b);
+
+            Zombi zombiPila = (Zombi) nodoPila.datos;
+            zombiPila.setBounds(0, i * 100, 100, 100);
+            panelZombi.add(zombiPila);
+
+            nodoPila = nodoPila.siguienteNodo;
         }
 
     }
@@ -58,8 +92,10 @@ public class Tablero extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         panelPlanta = new javax.swing.JPanel();
+        scrolPlanta = new javax.swing.JScrollPane();
         panelZombi = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        scrolZombi = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -81,11 +117,13 @@ public class Tablero extends javax.swing.JFrame {
         panelPlanta.setLayout(panelPlantaLayout);
         panelPlantaLayout.setHorizontalGroup(
             panelPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPlantaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(scrolPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelPlantaLayout.setVerticalGroup(
             panelPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addComponent(scrolPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelZombiLayout = new javax.swing.GroupLayout(panelZombi);
@@ -96,7 +134,7 @@ public class Tablero extends javax.swing.JFrame {
         );
         panelZombiLayout.setVerticalGroup(
             panelZombiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGap(0, 1, Short.MAX_VALUE)
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 204, 153));
@@ -123,7 +161,9 @@ public class Tablero extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelZombi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelZombi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrolZombi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -131,13 +171,13 @@ public class Tablero extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelZombi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrolZombi, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(panelPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelZombi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -203,7 +243,9 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
-    public javax.swing.JPanel panelPlanta;
+    private javax.swing.JPanel panelPlanta;
     private javax.swing.JPanel panelZombi;
+    private javax.swing.JScrollPane scrolPlanta;
+    private javax.swing.JScrollPane scrolZombi;
     // End of variables declaration//GEN-END:variables
 }

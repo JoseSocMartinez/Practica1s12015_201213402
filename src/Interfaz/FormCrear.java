@@ -205,8 +205,12 @@ public class FormCrear extends javax.swing.JDialog {
                     planta.setVida((int) txtVida.getValue());
                     planta.setAtaque((int) txtAtaque.getValue());
                     planta.setTipoAtaque((String) txtTipo.getSelectedItem());
+                    if (direccion != null) {
+                        planta.setIcon(new ImageIcon(direccion));
+                    } else {
+                        planta.setIcon(new ImageIcon(getClass().getResource("/Imagenes/imganenNoDisponible.png")));
+                    }
                     planta.setFoto(direccion);
-                    planta.setIcon(new ImageIcon(direccion));
                     Inicio.catalogoPlanta.agregarAlFinal(planta);
                 } else if (tipo.equalsIgnoreCase("Zombi")) {
                     Zombi zombi = new Zombi();
@@ -214,6 +218,11 @@ public class FormCrear extends javax.swing.JDialog {
                     zombi.setVida((int) txtVida.getValue());
                     zombi.setAtaque((int) txtAtaque.getValue());
                     zombi.setTipoAtaque((String) txtTipo.getSelectedItem());
+                    if (direccion != null) {
+                        zombi.setIcon(new ImageIcon(direccion));
+                    } else {
+                        zombi.setIcon(new ImageIcon(getClass().getResource("/Imagenes/imganenNoDisponible.png")));
+                    }
                     zombi.setFoto(direccion);
                     Inicio.catalogoZombi.agregarAlFinal(zombi);
                 }

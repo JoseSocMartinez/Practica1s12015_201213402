@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author Jose
  */
-public class Planta extends JButton implements ActionListener {
+public class Planta extends JButton {
 
     private int ataque;
     private int vida;
@@ -33,7 +33,7 @@ public class Planta extends JButton implements ActionListener {
 
     public Planta(Boolean disparar) {
 
-        setIcon(new ImageIcon(getFoto()));
+        //setIcon(new ImageIcon(getFoto()));
         setSize(100, 100);
         if (disparar) {
             //llama al metodo disparar
@@ -129,13 +129,6 @@ public class Planta extends JButton implements ActionListener {
 
             }
         });
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        setVisible(false);
 
     }
 }

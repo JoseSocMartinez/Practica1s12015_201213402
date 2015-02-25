@@ -4,11 +4,16 @@
  */
 package Entidades;
 
+import EstructurasDeDatos.NodoSimple;
+import Interfaz.Inicio;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  *
  * @author Jose
  */
-public class Zombi {
+public class Zombi extends JButton {
 
     private int ataque;
     private int vida;
@@ -19,6 +24,12 @@ public class Zombi {
     /**
      * @return the ataque
      */
+    public Zombi() {
+
+        evento();
+
+    }
+
     public int getAtaque() {
         return ataque;
     }
@@ -84,5 +95,30 @@ public class Zombi {
      */
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    void evento() {
+        addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setVisible(false);
+                Inicio.pilaZombis.eliminar();
+
+                NodoSimple nodoPila = Inicio.pilaZombis.primerNodo;
+                for (int i = 0; i < Inicio.pilaZombis.tamanioDeLaPila(); i++) {
+
+//            JButton b=new JButton();
+//            b.setBounds(0, 0, 100,100);
+//            panelPlanta.add(b);
+
+                    Zombi plantaPila = (Zombi) nodoPila.datos;
+                    plantaPila.setBounds(0, i * 100, 100, 100);
+
+
+                    nodoPila = nodoPila.siguienteNodo;
+                }
+
+            }
+        });
+
     }
 }

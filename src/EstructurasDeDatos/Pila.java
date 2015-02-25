@@ -38,6 +38,16 @@ public class Pila {
         }
     }
 
+    public int tamanioDeLaPila() {
+        NodoSimple nodo = primerNodo;
+        int tamanioPila = 0;
+        while (nodo != null) {
+            tamanioPila++;
+            nodo = nodo.siguienteNodo;
+        }
+        return tamanioPila;
+    }
+
     boolean listaVacia() {
         return primerNodo == null;
     }

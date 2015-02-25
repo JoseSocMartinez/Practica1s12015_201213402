@@ -193,8 +193,12 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlantasActionPerformed
 
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
-        FormTamanioMatriz matriz = new FormTamanioMatriz(this, true);
-        matriz.setVisible(true);
+        //FormTamanioMatriz matriz = new FormTamanioMatriz(this, true);
+        //matriz.setVisible(true);
+        Tablero tablero = new Tablero();
+        tablero.setVisible(true);
+        tablero.setResizable(false);
+
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
     private void btnZombisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZombisActionPerformed
@@ -231,8 +235,8 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FormCatalogo catalogo = new FormCatalogo(this, true, "Planta");
         catalogo.setVisible(true);
-        catalogo.setBounds(0, 0, 680, 500);
-        catalogo.PanelCatalogo.setLayout(null);
+        catalogo.setBounds(0, 0, 640, 500);
+        //catalogo.PanelCatalogo.setLayout(null);
 //        FormComponeneteCatalogo componente=new FormComponeneteCatalogo();
 //            componente.setVisible(true);
 //            componente.setBounds(0,111, 462, 111);
@@ -265,7 +269,7 @@ public class Inicio extends javax.swing.JFrame {
         FormCatalogo catalogo = new FormCatalogo(this, true, "Zombi");
         catalogo.setVisible(true);
         catalogo.setBounds(0, 0, 680, 500);
-        catalogo.PanelCatalogo.setLayout(null);
+        //catalogo.PanelCatalogo.setLayout(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     //String titulo;
