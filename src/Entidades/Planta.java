@@ -110,21 +110,25 @@ public class Planta extends JButton {
     void evento() {
         addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setVisible(false);
-                Inicio.colaPlantas.eliminar();
+                if (getLocation().y == 0) {
+                    setVisible(false);
+                    Inicio.colaPlantas.eliminar();
 
-                NodoSimple nodoCola = Inicio.colaPlantas.primerNodo;
-                for (int i = 0; i < Inicio.colaPlantas.tamanioDeLaCola(); i++) {
+                    NodoSimple nodoCola = Inicio.colaPlantas.primerNodo;
+                    for (int i = 0; i < Inicio.colaPlantas.tamanioDeLaCola(); i++) {
 
 //            JButton b=new JButton();
 //            b.setBounds(0, 0, 100,100);
 //            panelPlanta.add(b);
 
-                    Planta plantaCola = (Planta) nodoCola.datos;
-                    plantaCola.setBounds(0, i * 100, 100, 100);
+                        Planta plantaCola = (Planta) nodoCola.datos;
+                        plantaCola.setBounds(0, i * 100, 100, 100);
 
 
-                    nodoCola = nodoCola.siguienteNodo;
+                        nodoCola = nodoCola.siguienteNodo;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(Inicio.venta, "No se puede sacar este objeto!", "", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             }

@@ -7,8 +7,10 @@ package graphviz;
 import Entidades.Jugador;
 import Entidades.Planta;
 import Entidades.Zombi;
+import EstructurasDeDatos.Cola;
 import EstructurasDeDatos.ListaSimple;
 import EstructurasDeDatos.NodoSimple;
+import EstructurasDeDatos.Pila;
 import Interfaz.Inicio;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -128,6 +130,68 @@ public class Pintar {
         // punteroi=punteroi+"nodoNulli};{nodo0->nodo00};{nodo1->nodo10};";
         // punteroj=punteroj+"nodoNullj};";
         cadenaCompleta = inicio + nodo + punteroi + punteroj + fin;
+
+        Pintar(titulo, cadenaCompleta);
+
+    }
+
+    public void reporteCola(String titulo) {
+
+        String inicio = "digraph tabla {";
+        String fin = "}";
+        String nodo = "";
+        String puntero = "";
+        //this.titulo="node [shape=record];Titulo[label=\""+titulo+"\"];";
+        String cadenaCompleta = "";
+        Cola cola = Inicio.colaPlantas;
+        NodoSimple nodoLista = cola.primerNodo;
+
+        for (int i = 0; i < cola.tamanioDeLaCola(); i++) {
+
+
+
+            Planta planta = (Planta) nodoLista.datos;
+
+            nodo = nodo + " node [shape=record];nodo" + i + "[label=\"" + "{Nombre|" + planta.getNombre() + "}|{Tipo|" + planta.getTipoAtaque() + "}|{Vida|" + planta.getVida() + "}|{Ataque|" + planta.getAtaque() + "}" + "\"];";
+            puntero = puntero + "nodo" + (i) + "->";
+
+            nodoLista = nodoLista.siguienteNodo;
+
+        }
+        nodo = nodo + "node [shape=record];nodoNull[label=\"NULL\"];";
+        puntero = puntero + "nodoNull;";
+        cadenaCompleta = inicio + nodo + puntero + fin;
+
+        Pintar(titulo, cadenaCompleta);
+
+    }
+
+    public void reportePila(String titulo) {
+
+        String inicio = "digraph tabla {";
+        String fin = "}";
+        String nodo = "";
+        String puntero = "";
+        //this.titulo="node [shape=record];Titulo[label=\""+titulo+"\"];";
+        String cadenaCompleta = "";
+        Pila pila = Inicio.pilaZombis;
+        NodoSimple nodoLista = pila.primerNodo;
+
+        for (int i = 0; i < pila.tamanioDeLaPila(); i++) {
+
+
+
+            Zombi zombi = (Zombi) nodoLista.datos;
+
+            nodo = nodo + " node [shape=record];nodo" + i + "[label=\"" + "{Nombre|" + zombi.getNombre() + "}|{Tipo|" + zombi.getTipoAtaque() + "}|{Vida|" + zombi.getVida() + "}|{Ataque|" + zombi.getAtaque() + "}" + "\"];";
+            puntero = puntero + "nodo" + (i) + "->";
+
+            nodoLista = nodoLista.siguienteNodo;
+
+        }
+        nodo = nodo + "node [shape=record];nodoNull[label=\"NULL\"];";
+        puntero = puntero + "nodoNull;";
+        cadenaCompleta = inicio + nodo + puntero + fin;
 
         Pintar(titulo, cadenaCompleta);
 

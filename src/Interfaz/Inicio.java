@@ -9,6 +9,7 @@ import Entidades.Planta;
 import EstructurasDeDatos.*;
 import graphviz.Pintar;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Inicio extends javax.swing.JFrame {
 
+    public static JFrame venta;
     public static ListaSimple listaJugador = new ListaSimple();
     public static Cola colaPlantas = new Cola();
     public static Pila pilaZombis = new Pila();
@@ -51,6 +53,7 @@ public class Inicio extends javax.swing.JFrame {
         //int nodo=(int)cola.eliminar();
         // System.out.println(""+nodo);
         initComponents();
+        venta = this;
         setSize(930, 600);
         setTitle("Plantas vs Zombis");
 
@@ -196,10 +199,19 @@ public class Inicio extends javax.swing.JFrame {
         //FormTamanioMatriz matriz = new FormTamanioMatriz(this, true);
         //matriz.setVisible(true);
 
-        Tablero tablero = new Tablero();
-        tablero.setVisible(true);
-        tablero.setResizable(false);
-        setVisible(false);
+        Jugador planta = new Jugador();
+        Jugador zombi = new Jugador();
+
+        planta = listaJugador.buscarJugador("Planta");
+        zombi = listaJugador.buscarJugador("Zombi");
+        if (planta != null && zombi != null) {
+            Tablero tablero = new Tablero();
+            tablero.setVisible(true);
+            tablero.setResizable(false);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Se necesitan 2 jugadores obligatoriamente", "", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
@@ -351,9 +363,9 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //        Pintar pintar = new Pintar();
 //        pintar.reporteJugadores("Jugadores");
-        Tablero tablero = new Tablero();
-        tablero.setVisible(true);
-        tablero.setResizable(false);
+//        Tablero tablero = new Tablero();
+//        tablero.setVisible(true);
+//        tablero.setResizable(false);
 //        JButton b=new JButton();
 //        b.setBounds(0,0, 100, 100);
 //        tablero.panelPlanta.add(b);
@@ -361,7 +373,6 @@ public class Inicio extends javax.swing.JFrame {
 //        JButton b2=new JButton();
 //        b2.setBounds(0,100, 100, 100);
 //        tablero.panelPlanta.add(b2);
-
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
