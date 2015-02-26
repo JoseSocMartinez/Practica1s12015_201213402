@@ -195,9 +195,11 @@ public class Inicio extends javax.swing.JFrame {
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         //FormTamanioMatriz matriz = new FormTamanioMatriz(this, true);
         //matriz.setVisible(true);
+
         Tablero tablero = new Tablero();
         tablero.setVisible(true);
         tablero.setResizable(false);
+        setVisible(false);
 
     }//GEN-LAST:event_btnEmpezarActionPerformed
 
